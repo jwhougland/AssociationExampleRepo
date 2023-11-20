@@ -1,5 +1,7 @@
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Defines the characteristics of a student.
@@ -15,6 +17,12 @@ public class Student extends UniversityMember {
      * Collection of the student's minors.
      */
     private List<Enums.Discipline> minors;
+
+    /**
+     * Map where the key is a professor's university ID and the
+     * value is the professor that is associated with this student.
+     */
+    private Map<Integer, Professor> professors = new HashMap<>();
 
     /**
      * Creates a fully initialized university member using the given data.
@@ -58,5 +66,37 @@ public class Student extends UniversityMember {
      */
     public List<Enums.Discipline> getMinors() {
         return minors;
+    }
+
+    /**
+     * Adds the professor to the list that are associated with the student.
+     *
+     * @param professor Professor to add to the list that are associated with the student.
+     */
+    public void addProfessorAssociation(Professor professor) {
+
+        // Run a null check on the professor parameter
+        if (professor == null) {
+            throw new IllegalArgumentException("Cannot associate a null professor with a student");
+        }
+
+        // Add the professor to the map if the professor is not already in the map
+        professors.putIfAbsent(professor.getId(), professor);
+    }
+
+    /**
+     * Removes the professor from the list that are associated with the student.
+     *
+     * @param professor Professor to remove from the list that are associated with the student.
+     */
+    public void removeProfessorAssociation(Professor professor) {
+
+        // Run a null check on the professor parameter
+        if (professor == null) {
+            throw new IllegalArgumentException("Cannot disassociate a null professor from a student");
+        }
+
+        // Remove the professor from the map if the professor is present in the map
+        professors.remove(professor.getId());
     }
 }
