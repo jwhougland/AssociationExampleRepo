@@ -1,6 +1,7 @@
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 /**
  * Defines the characteristics of a professor.
@@ -119,5 +120,39 @@ public class Professor extends UniversityMember {
 
         // Remove the student from the map
         students.remove(student.getId());
+    }
+
+    /**
+     * Returns a string representation of the professor
+     */
+    @Override
+    public String toString() {
+        return "Professor{" +
+                "disciplines=" + disciplines +
+                ", jobRole=" + jobRole +
+                ", students=" + students +
+                '}';
+    }
+
+    /**
+     * Determines if this professor equals the other professor
+     * @param o The other professor
+     * @return True if this professor equals the other professor, otherwise false.
+     */
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        Professor professor = (Professor) o;
+        return Objects.equals(disciplines, professor.disciplines) && jobRole == professor.jobRole && Objects.equals(students, professor.students);
+    }
+
+    /**
+     * Compute and returns the hash code for this professor.
+     */
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), disciplines, jobRole, students);
     }
 }
