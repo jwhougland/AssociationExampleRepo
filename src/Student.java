@@ -141,7 +141,7 @@ public class Student extends UniversityMember {
 
     /**
      * Determines if this student is equal to the other student
-     * @param o The other university member instance
+     * @param o The other student
      * @return True if this student is equal to the other student, otherwise false.
      */
     @Override
