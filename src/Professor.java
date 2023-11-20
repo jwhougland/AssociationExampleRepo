@@ -58,11 +58,43 @@ public class Professor extends UniversityMember {
     }
 
     /**
+     * Adds the related students to the list that are associated with the professor.
+     *
+     * @param relatedStudents Students to add to the list that are associated with the professor.
+     */
+    public void addStudentAssociations(List<Student> relatedStudents) {
+
+        // Run a null check on the related students collection
+        if (relatedStudents == null) {
+            throw new IllegalArgumentException("Cannot associate a null students list with a professor");
+        }
+
+        // Add each student to the list that are associated with the professor.
+        relatedStudents.forEach(this::addStudentAssociation);
+    }
+
+    /**
+     * Removes the given students from the professor's list of associated students.
+     *
+     * @param unrelatedStudents Students to remove from the professor's list of associated students
+     */
+    public void removeStudentAssociations(List<Student> unrelatedStudents) {
+
+        // Run a null check on the unrelated students collection
+        if (unrelatedStudents == null) {
+            throw new IllegalArgumentException("Invalid input.  Cannot disassociate students from professor");
+        }
+
+        // Remove each student from the professor's list of associated students
+        unrelatedStudents.forEach(this::removeStudentAssociation);
+    }
+
+    /**
      * Adds the student to the list that are associated with the professor.
      *
      * @param student Student to add to the list that are associated with the professor.
      */
-    public void addStudentAssociation(Student student) {
+    private void addStudentAssociation(Student student) {
 
         // Run a null check on the student parameter
         if (student == null) {
@@ -78,7 +110,7 @@ public class Professor extends UniversityMember {
      *
      * @param student Student to remove from the list that are associated with the professor.
      */
-    public void removeStudentAssociation(Student student) {
+    private void removeStudentAssociation(Student student) {
 
         // Run a null check on the student parameter
         if (student == null) {

@@ -69,11 +69,41 @@ public class Student extends UniversityMember {
     }
 
     /**
+     * Adds the related professors to the list that are associated with the student.
+     *
+     * @param relatedProfessors Professors to add to the list that are associated with the student.
+     */
+    public void addProfessorAssociations(List<Professor> relatedProfessors) {
+
+        // Run a null check on the related professors collection
+        if (relatedProfessors == null) {
+            throw new IllegalArgumentException("Cannot associate a null professors list with a student");
+        }
+
+        relatedProfessors.forEach(this::addProfessorAssociation);
+    }
+
+    /**
+     * Removes the given professors from the student's list of associated professors.
+     *
+     * @param unrelatedProfessors Professors to remove from the student's list of associated professors
+     */
+    public void removeProfessorAssociations(List<Professor> unrelatedProfessors) {
+
+        // Run a null check on the unrelated professors collection
+        if (unrelatedProfessors == null) {
+            throw new IllegalArgumentException("Invalid input.  Cannot disassociate professors from student");
+        }
+
+        unrelatedProfessors.forEach(this::removeProfessorAssociation);
+    }
+
+    /**
      * Adds the professor to the list that are associated with the student.
      *
      * @param professor Professor to add to the list that are associated with the student.
      */
-    public void addProfessorAssociation(Professor professor) {
+    private void addProfessorAssociation(Professor professor) {
 
         // Run a null check on the professor parameter
         if (professor == null) {
@@ -89,7 +119,7 @@ public class Student extends UniversityMember {
      *
      * @param professor Professor to remove from the list that are associated with the student.
      */
-    public void removeProfessorAssociation(Professor professor) {
+    private void removeProfessorAssociation(Professor professor) {
 
         // Run a null check on the professor parameter
         if (professor == null) {
